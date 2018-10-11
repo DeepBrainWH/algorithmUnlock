@@ -49,11 +49,11 @@ public:
         int low = 0;
         int high = len - 1;
         int mid;
-        while (low < high) {
+        while (low <= high) {
             mid = (low + high) / 2;
             if (arr[mid] == key)
                 return mid;
-            else if (arr[mid] < key)
+            else if (key > arr[mid])
                 low = mid + 1;
             else
                 high = mid - 1;
@@ -63,6 +63,9 @@ public:
 
     /**
      * binary search with recursive
+     * @param arr: array
+     * @param l: letf
+     * @param r: right
      */
      int binary_search_recursive(int *arr, int l, int r, int key)
     {
@@ -91,15 +94,14 @@ public:
         return -1;
     }
 
-private:
     int* get_sort_rand(int len){
         srand(static_cast<unsigned int>(time(nullptr)));
         int *a = new int[len];
         for(int i = 0;i<len;i++){
             if(i > 0){
-                a[i] = a[i-1] + rand() % 5;
+                a[i] = a[i-1] + rand() % 15;
             } else{
-                a[i] = rand() % 5;
+                a[i] = rand() % 15;
             }
         }
         return a;
