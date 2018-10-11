@@ -45,7 +45,7 @@ public:
     /**
      * binary search no-recursive
      */
-    int binary_search_no_recorsive(const int* arr, int len, int key) {
+    int binary_search_no_recursive(const int* arr, int len, int key) {
         int low = 0;
         int high = len - 1;
         int mid;
