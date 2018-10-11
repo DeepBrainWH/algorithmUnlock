@@ -43,6 +43,41 @@ public:
     }
 
     /**
+     * binary search no-recursive
+     */
+    int binary_search_no_recorsive(const int* arr, int len, int key) {
+        int low = 0;
+        int high = len - 1;
+        int mid;
+        while (low < high) {
+            mid = (low + high) / 2;
+            if (arr[mid] == key)
+                return mid;
+            else if (arr[mid] < key)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+        return -1;
+    }
+
+    /**
+     * binary search with recursive
+     */
+     int binary_search_recursive(int *arr, int l, int r, int key)
+    {
+         int mid = (l + r) / 2;
+         if(r<l)
+             return -1;
+         if(arr[mid] < key)
+             return binary_search_recursive(arr, mid + 1, r, key);
+         else if(arr[mid] == key)
+             return mid;
+         else
+             return binary_search_recursive(arr, l, mid - 1, key);
+    }
+
+    /**
      * sentinel linear search
      * @param arr
      * @param len
