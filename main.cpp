@@ -1,5 +1,7 @@
 #include <iostream>
 #include "SearchAlgorithm.h"
+#include "SortAlgorithm.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -17,10 +19,26 @@ void test_search_function(){
     cout<<index2<<endl;
 }
 
+void test_sort(){
+    auto* sortAlgorithm = new SortAlgorithm<int>();
+    int* a = utils::get_unsort_range(20);
+    for(int i = 0;i<20;i++){
+        cout<<a[i]<<"  ";
+    }
+    cout<<"\n"<<"====================="<<endl;
+    sortAlgorithm->selectSort(a, 20);
+    for(int i = 0;i<20;i++){
+        cout<<a[i]<<"  ";
+    }
+
+}
+
 
 
 
 int main() {
-    test_search_function();
+//    test_search_function();
+    test_sort();
     return 0;
+
 }
