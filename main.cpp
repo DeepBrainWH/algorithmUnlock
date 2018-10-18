@@ -19,6 +19,19 @@ void test_search_function(){
     cout<<index2<<endl;
 }
 
+void test_sentinel_linear_search(){
+    auto* algorithm = new SearchAlgorithm();
+    int* a = algorithm->get_rand(30);
+    for(int i = 0;i<30;i++){
+        cout<<a[i]<<"  ";
+    }
+    cout<<endl;
+    int index = algorithm->sentinel_linear_search(a, 30, 890);
+    cout<<"the value "<<890<<" 's position in "<<index<<endl;
+
+
+}
+
 void test_sort(){
     auto* sortAlgorithm = new SortAlgorithm<int>();
     int* a = utils::get_unsort_range(20);
@@ -48,7 +61,9 @@ void test_quick_sort(){
 int main() {
 //    test_search_function();
 //    test_sort();
-    test_quick_sort();
+//    test_quick_sort();
+    test_sentinel_linear_search();
+
     return 0;
 
 }

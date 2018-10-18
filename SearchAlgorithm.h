@@ -22,25 +22,47 @@ public:
      * @param key key value
      * @return the key's index in arr
      */
-    int liner_search(int* arr, int len, int key)
+    int linear_search(const int* arr, int len, int key)
     {
+        int index = -1;
         for(int i = 0; i < len;i++){
-            if(arr[i] == key)
-                return i;
-            else
-                return -1;
+            if(arr[i] == key){
+                index = i;
+                return index;
+            }
+
         }
-        return -1;
+        return index;
     }
 
     /**
      * better search
      */
-    int better_search(int * arr, int len, int key)
+    int better_linear_search(const int * arr, int len, int key)
     {
-
+        for(int i = 0;i<len; i++){
+            if(arr[i] == key)
+                return i;
+        }
         return -1;
     }
+
+    /**
+     * sentinel-linear-search
+     */
+     int sentinel_linear_search(int* arr, int len, int key){
+         int last = arr[len-1];
+         arr[len-1] = key;
+         int i = 0;
+         while (arr[i] != key){
+             i++;
+         }
+         arr[len-1] = last;
+         if(i<len-1 || arr[len-1] == key)
+             return i;
+         else
+             return -1;
+     }
 
     /**
      * binary search no-recursive
@@ -80,19 +102,6 @@ public:
              return binary_search_recursive(arr, l, mid - 1, key);
     }
 
-    /**
-     * sentinel linear search
-     * @param arr
-     * @param len
-     * @param key
-     * @return
-     */
-    int sentinel_linear_search(int* arr, int len, int key)
-    {
-
-
-        return -1;
-    }
 
     int* get_sort_rand(int len){
         srand(static_cast<unsigned int>(time(nullptr)));
