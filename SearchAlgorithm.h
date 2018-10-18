@@ -28,7 +28,6 @@ public:
         for(int i = 0; i < len;i++){
             if(arr[i] == key){
                 index = i;
-                return index;
             }
 
         }
@@ -44,6 +43,8 @@ public:
             if(arr[i] == key)
                 return i;
         }
+
+
         return -1;
     }
 
@@ -103,24 +104,24 @@ public:
     }
 
 
-    int* get_sort_rand(int len){
+    int* get_sort_rand(int len, int upbound){
         srand(static_cast<unsigned int>(time(nullptr)));
         int *a = new int[len];
         for(int i = 0;i<len;i++){
             if(i > 0){
-                a[i] = a[i-1] + rand() % 15;
+                a[i] = a[i-1] + rand() % upbound;
             } else{
-                a[i] = rand() % 15;
+                a[i] = rand() % upbound;
             }
         }
         return a;
     }
 
-    int* get_rand(int len){
+    int* get_rand(int len, int upbound){
         srand(static_cast<unsigned int>(time(nullptr)));
         int* a= new int[len];
         for(int i=0;i<len;i++){
-            a[i] = rand() % 50;
+            a[i] = rand() % upbound;
         }
         return a;
     }

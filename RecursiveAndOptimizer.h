@@ -25,7 +25,11 @@ public:
      * Using recursive method to get the value of Nth term in the Fibonacci sequence.
      */
     long fib(int n){
-
+        //fib = [1,1,2,3,5,...,]
+        //fib(n) = fib(n-2) + fib(n-1)
+        if(n == 1 || n==2)
+            return 1;
+        return fib(n-1) + fib(n-2);
     }
 
 };

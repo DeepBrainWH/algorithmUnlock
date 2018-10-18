@@ -92,6 +92,10 @@ public:
 
     }
 
+    void insert_sort(int* arr, int len){
+
+    }
+
 
 
 private:

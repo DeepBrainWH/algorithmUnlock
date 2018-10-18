@@ -8,23 +8,23 @@
 #include <ctime>
 
 namespace utils{
-    static int* get_unsort_range(int len){
+    static int* get_unsort_range(int len, int upbond){
         srand(static_cast<unsigned int>(time(nullptr)));
         int* a= new int[len];
         for(int i=0;i<len;i++){
-            a[i] = rand() % 500;
+            a[i] = rand() % upbond;
         }
         return a;
     }
 
-    static int* get_sort_range(int len){
+    static int* get_sort_range(int len, int upbond){
         srand(static_cast<unsigned int>(time(nullptr)));
         int *a = new int[len];
         for(int i = 0;i<len;i++){
             if(i > 0){
-                a[i] = a[i-1] + rand() % 15;
+                a[i] = a[i-1] + rand() % upbond;
             } else{
-                a[i] = rand() % 15;
+                a[i] = rand() % upbond;
             }
         }
         return a;
