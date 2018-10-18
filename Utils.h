@@ -12,7 +12,7 @@ namespace utils{
         srand(static_cast<unsigned int>(time(nullptr)));
         int* a= new int[len];
         for(int i=0;i<len;i++){
-            a[i] = rand() % 50;
+            a[i] = rand() % 500;
         }
         return a;
     }

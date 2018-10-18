@@ -55,14 +55,23 @@ void test_quick_sort(){
     cout<<endl;
 }
 
-
+void test_quick_sort_method2(){
+    auto* sort = new SortAlgorithm<int>();
+    int* list = utils::get_unsort_range(100);
+    sort->quick_sort_method2(list, 0, 99);
+    for(int i = 0;i<100;i++){
+        cout<<list[i]<<"\t";
+    }
+    cout<<endl;
+}
 
 
 int main() {
 //    test_search_function();
 //    test_sort();
 //    test_quick_sort();
-    test_sentinel_linear_search();
+//    test_sentinel_linear_search();
+    test_quick_sort_method2();
 
     return 0;
 
