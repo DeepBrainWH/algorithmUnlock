@@ -30,7 +30,16 @@ void test_sort(){
     for(int i = 0;i<20;i++){
         cout<<a[i]<<"  ";
     }
+}
 
+void test_quick_sort(){
+    auto* sort = new SortAlgorithm<int>();
+    int* list = utils::get_unsort_range(100);
+    sort->quick_sort(list, 0, 99);
+    for(int i = 0;i<100;i++){
+        cout<<list[i]<<"\t";
+    }
+    cout<<endl;
 }
 
 
@@ -38,7 +47,8 @@ void test_sort(){
 
 int main() {
 //    test_search_function();
-    test_sort();
+//    test_sort();
+    test_quick_sort();
     return 0;
 
 }
