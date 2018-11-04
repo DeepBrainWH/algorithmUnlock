@@ -29,7 +29,6 @@ public:
             if(arr[i] == key){
                 index = i;
             }
-
         }
         return index;
     }
@@ -43,8 +42,6 @@ public:
             if(arr[i] == key)
                 return i;
         }
-
-
         return -1;
     }
 

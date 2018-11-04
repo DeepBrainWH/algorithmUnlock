@@ -89,11 +89,53 @@ public:
             quick_sort_method2(arr, left, j);
         if(i<right)
             quick_sort_method2(arr, i, right);
-
     }
 
+    /**
+     * Quick sort. Book example.
+     * @param arr
+     * @param left
+     * @param right
+     */
+    void quick_sort_book(T* arr, int left, int right){
+        if(left>=right)
+            return;
+        int l = left;
+        int r = right;
+        T tmp = arr[r];
+        while (l<r){
+            while (arr[l]<tmp && l<r)
+                l++;
+            if(l<r){
+                arr[r] = arr[l];
+                r--;
+            }
+            while (arr[r]>tmp && l<r){
+                r--;
+            }
+            if(l<r){
+                arr[l] = arr[r];
+                l++;
+            }
+        }
+        arr[r] = tmp;
+        quick_sort_book(arr, left, l-1);
+        quick_sort_book(arr, r+1, right);
+    }
     void insert_sort(int* arr, int len){
-
+        int i = 1;
+        int x;
+        int j;
+        while(i<len){
+            x = arr[i];
+            j = i-1;
+            while (j>=0 && arr[j]>x){
+                arr[j+1] = arr[j];
+                j--;
+            }
+            arr[j+1] = x;
+            i++;
+        }
     }
 
 

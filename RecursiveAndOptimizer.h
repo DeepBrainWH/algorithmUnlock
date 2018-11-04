@@ -32,6 +32,17 @@ public:
         return fib(n-1) + fib(n-2);
     }
 
+    long fib(int num, long* result){
+        if(num == 1 || num == 2){
+            return 1;
+        }
+        if(result[num-1] != 0){
+            return result[num-1];
+        }
+        result[num-1] = fib(num-1, result) + fib(num - 2, result);
+        return result[num-1];
+    }
+
 };
 
 

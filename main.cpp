@@ -68,7 +68,16 @@ void test_quick_sort_method2(){
 
 void test_fib(){
     auto* recursive = new RecursiveAndOptimizer();
-    cout<<"fib: "<<recursive->fib(4)<<endl;
+    cout<<"fib: "<<recursive->fib(45)<<endl;
+}
+
+void test_optimizer_fib(){
+    int n = 45;
+    auto* recursive = new RecursiveAndOptimizer();
+    auto* result = new long[n]{0};
+
+    long value = recursive->fib(n, result);
+    cout<<value<<endl;
 }
 
 void test_factorial(){
@@ -80,16 +89,39 @@ void test_linear_search(){
 
 }
 
+void test_insert_sort(){
+    auto* sort = new SortAlgorithm<int>();
+    int* list = utils::get_unsort_range(20, 50);
+    sort->insert_sort(list, 20);
+    for(int i = 0;i<20;i++){
+        cout<<list[i]<<"\t";
+    }
+    cout<<endl;
+}
+
+void test_quick_sort_book(){
+    auto* sort = new SortAlgorithm<int>();
+    int* arr = utils::get_unsort_range(10, 50);
+    sort->quick_sort_book(arr, 0, 9);
+    for(int i = 0;i<10;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+
 
 int main() {
 //    test_search_function();
 //    test_sort();
 //    test_quick_sort();
-    test_sentinel_linear_search();
+//    test_sentinel_linear_search();
 //    test_quick_sort_method2();
+//    test_insert_sort();
 //    test_fib();
+//    cout<<endl;
 //    test_factorial();
-
+//    test_optimizer_fib();
+    test_quick_sort_book();
     return 0;
 
 }
