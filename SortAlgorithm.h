@@ -5,6 +5,11 @@
 #ifndef ALGORITHMUNLOCK_SORTALGORITHM_H
 #define ALGORITHMUNLOCK_SORTALGORITHM_H
 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 template <class T>
 class SortAlgorithm {
 public:
@@ -26,8 +31,22 @@ public:
         }
     }
 
-    void merge_sort(T* list, int len){
-
+    void merge_sort(T* arr, int start, int end, T* result){
+        if(end-start == 1){
+            if(arr[start]>arr[end]){
+                swap(arr, start, end);
+            }
+            return;
+        } else if(end -start == 0){
+            return;
+        } else{
+            merge_sort(arr, start, (end+start)/2, result);
+            merge_sort(arr, (end+start)/2+1, end, result);
+            merge(arr, start, end, result);
+            for(int i = start; i<=end;i++){
+                arr[i] = result[i];
+            }
+        }
     }
 
     /**
@@ -75,9 +94,9 @@ public:
         int i = left;
         int j = right;
         while (i<=j){
-            while (arr[i]<bin)
+            while (arr[i]<bin && i<j)
                 i++;
-            while (arr[j]>bin)
+            while (arr[j]>bin && i<j)
                 j--;
             if(i<=j){
                 swap(arr, i, j);
@@ -122,7 +141,13 @@ public:
         quick_sort_book(arr, left, l-1);
         quick_sort_book(arr, r+1, right);
     }
-    void insert_sort(int* arr, int len){
+
+    /**
+     * Insert sort.
+     * @param arr
+     * @param len
+     */
+    void insert_sort(T* arr, int len){
         int i = 1;
         int x;
         int j;
@@ -137,15 +162,70 @@ public:
             i++;
         }
     }
+    /**
+     * 对长度为5的单词进行字典排序
+     * @param arr
+     * @param arr_len
+     * @param word_max_len
+     */
+    void world_count_sort(string* arr, int arr_len){
+        int* a = new int[26];
+        string word;
+        for(int i = 0;i<arr_len;i++){
+            char tmp = arr[i][0];
+        }
 
+    }
 
+    void count_sort(T* arr, int len){
+        int max_value = get_max_value(arr, len);
+        T* rank = new T[max_value];
 
+    }
 private:
     void swap(T* list, int first, int last){
         T a;
         a = list[last];
         list[last] = list[first];
         list[first] = a;
+    }
+
+    T get_max_value(T* arr, int len){
+        int max = arr[0];
+        for(int i = 0;i<len;i++){
+            if(arr[i]>max){
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    void merge(T* arr, int start, int end, T* result){
+        int left_length = (end-start)/2 + 1;
+        int left_index = start;
+        int right_index = left_length + start;
+        int result_index = start;
+        while (left_index<start + left_length && right_index < end+1){
+            if(arr[left_index] <= arr[right_index]){
+                result[result_index] = arr[left_index];
+                left_index++;
+                result_index++;
+            }else{
+                result[result_index] = arr[right_index];
+                result_index++;
+                right_index++;
+            }
+        }
+        while(left_index < start + left_length){
+            result[result_index] = arr[left_index];
+            left_index ++;
+            result_index++;
+        }
+        while(right_index<end+1){
+            result[result_index] = arr[right_index];
+            result_index++;
+            right_index++;
+        }
     }
 
 };

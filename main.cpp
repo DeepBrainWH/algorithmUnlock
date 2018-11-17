@@ -99,6 +99,17 @@ void test_insert_sort(){
     cout<<endl;
 }
 
+void test_merge_sort(){
+    auto* sort = new SortAlgorithm<int>();
+    int* list = utils::get_unsort_range(20, 50);
+    int* result = new int[20];
+    sort->merge_sort(list, 0, 19, result);
+    for(int i = 0;i<20;i++){
+        cout<<result[i]<<" ";
+    }
+    cout<<endl;
+}
+
 void test_quick_sort_book(){
     auto* sort = new SortAlgorithm<int>();
     int* arr = utils::get_unsort_range(10, 50);
@@ -121,7 +132,8 @@ int main() {
 //    cout<<endl;
 //    test_factorial();
 //    test_optimizer_fib();
-    test_quick_sort_book();
+//    test_quick_sort_book();
+    test_merge_sort();
     return 0;
 
 }
