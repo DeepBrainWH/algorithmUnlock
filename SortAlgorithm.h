@@ -121,25 +121,10 @@ public:
             return;
         int l = left;
         int r = right;
-        T tmp = arr[r];
-        while (l<r){
-            while (arr[l]<tmp && l<r)
-                l++;
-            if(l<r){
-                arr[r] = arr[l];
-                r--;
-            }
-            while (arr[r]>tmp && l<r){
-                r--;
-            }
-            if(l<r){
-                arr[l] = arr[r];
-                l++;
-            }
-        }
-        arr[r] = tmp;
-        quick_sort_book(arr, left, l-1);
-        quick_sort_book(arr, r+1, right);
+        int q;
+        q = partition(arr, l, r);
+        quick_sort_book(arr, l, q-1);
+        quick_sort_book(arr, q+1, r);
     }
 
     /**
@@ -169,17 +154,11 @@ public:
      * @param word_max_len
      */
     void world_count_sort(string* arr, int arr_len){
-        int* a = new int[26];
-        string word;
-        for(int i = 0;i<arr_len;i++){
-            char tmp = arr[i][0];
+        char* a = new char[5]{'a', 'c', 'b', 'c', 'b'};
+        this->count_sort(a, 5);
+        for(int i = 0;i<5;i++){
+            cout<<a[i]<<"\t";
         }
-
-    }
-
-    void count_sort(T* arr, int len){
-        int max_value = get_max_value(arr, len);
-        T* rank = new T[max_value];
 
     }
 private:
@@ -227,6 +206,54 @@ private:
             right_index++;
         }
     }
+
+    /**
+     * Count sort
+     */
+     void count_sort(char* arr, int len, int k=26){
+         int* tmp = new int[k];
+         //初始化临时数组
+         for(int i = 0;i<k;i++){
+             tmp[i] = 0;
+         }
+         //进行数值统计
+         for(int i = 0;i<len;i++){
+             tmp[(int)arr[i]-97] += 1;
+         }
+         int index = 0;
+         for(int i = 0;i<26;i++){
+             int f = tmp[i];
+             while(tmp[i]>0){
+                 arr[index] = (char)(i+97);
+                 char ff = arr[index];
+                 tmp[i]--;
+                 index++;
+             }
+         }
+         delete[] tmp;
+     };
+
+    /**
+     * partition
+     */
+     int partition(T* arr, int l, int r){
+         int flag = l;
+         T tmp;
+         for (int i = l;i<r;i++){
+             if(arr[i]<arr[r]){
+                 tmp = arr[flag];
+                 arr[flag] = arr[i];
+                 arr[i] = tmp;
+                 flag++;
+             }
+         }
+         tmp = arr[r];
+         arr[r] = arr[flag];
+         arr[flag] = tmp;
+         return flag;
+
+     }
+
 
 };
 

@@ -112,12 +112,17 @@ void test_merge_sort(){
 
 void test_quick_sort_book(){
     auto* sort = new SortAlgorithm<int>();
-    int* arr = utils::get_unsort_range(10, 50);
+    int* arr = utils::get_unsort_range(10, 10);
     sort->quick_sort_book(arr, 0, 9);
     for(int i = 0;i<10;i++){
         cout<<arr[i]<<" ";
     }
     cout<<endl;
+}
+
+void test_count_sort(){
+    auto* algorithm = new SortAlgorithm<int>();
+    algorithm->world_count_sort(nullptr, 10);
 }
 
 
@@ -132,8 +137,9 @@ int main() {
 //    cout<<endl;
 //    test_factorial();
 //    test_optimizer_fib();
-//    test_quick_sort_book();
-    test_merge_sort();
+    test_quick_sort_book();
+//    test_merge_sort();
+//    test_count_sort();
     return 0;
 
 }
