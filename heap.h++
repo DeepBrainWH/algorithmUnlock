@@ -152,5 +152,4 @@ public:
         }
     }
 };
-
 #endif //ALGORITHMUNLOCK_HEAP_H

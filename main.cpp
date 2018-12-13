@@ -139,16 +139,16 @@ void test_radix_sort(){
 }
 
 void test_heap(){
-    Heap<int>* heap = new Heap<int>(10);
+    auto * heap = new Heap<int>(10);
     int a[7] = {5,7,1,2,3,1,0};
-    for (int i = 0;i<7;i++){
-        heap->push(a[i]);
+    for (int i : a) {
+        heap->push(i);
     }
     heap->print_heap();
 //    int b = heap->pop();
 //    cout<<b<<endl;
 //    heap->print_heap();
-    heap->update_heap_value(4, -1);
+    heap->update_heap_value(6, -1);
     heap->print_heap();
 }
 
