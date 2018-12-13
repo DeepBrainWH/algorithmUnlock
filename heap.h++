@@ -35,9 +35,7 @@ public:
         int tmp_node_index = (this->heap_length - 1);
         while (tmp_node_index >0) {
             if (this->heap[tmp_node_index] < this->heap[(tmp_node_index - 1) / 2]) {
-                T tmp = this->heap[tmp_node_index];
-                this->heap[tmp_node_index] = this->heap[(tmp_node_index - 1) / 2];
-                this->heap[(tmp_node_index - 1) / 2] = tmp;
+                this->swap_data(this->heap, (tmp_node_index - 1) / 2, tmp_node_index);
                 tmp_node_index = (tmp_node_index - 1) / 2;
             } else {
                 break;
@@ -54,39 +52,51 @@ public:
             this->heap[0] = this->heap[this->heap_length - 1];
             this->heap_length --;
             int tmp_index = 0;
-            while (tmp_index < this->heap_length){
-                int left_index = 2 * tmp_index + 1;
-                int right_index = 2 * tmp_index + 2;
-                if (right_index < this->heap_length){
-                    if(this->heap[tmp_index] > this->heap[left_index] and this->heap[tmp_index] > this->heap[right_index]){
-                        if(this->heap[left_index] > this->heap[right_index]){
-                            this->swap_data(this->heap, tmp_index, right_index);
-                            tmp_index = right_index;
+            this->adjust_heap_node(this->heap, tmp_index);
+            return tmp_data;
+        }
+    }
+
+    void update_heap_value(int index, T data){
+        if (index >= this->heap_length){
+            throw "Array index out of bound exception!";
+        } else{
+            this->heap[index] = data;
+            if (index % 2 == 0 and index != 0){
+                int right = index;
+                int father = (right - 2) / 2;
+                while (father >= 0){
+                    if (this->heap[right] < this->heap[father]){
+                        this->swap_data(this->heap, right, father);
+                        right = father;
+                        if(father % 2 == 0){
+                            father = (father - 2) / 2;
                         }else{
-                            this->swap_data(this->heap, tmp_index, left_index);
-                            tmp_index =left_index;
+                            father = (father - 1) / 2;
                         }
-                    }else if(this->heap[tmp_index] > this->heap[left_index]){
-                        this->swap_data(this->heap, tmp_index, left_index);
-                        tmp_index = left_index;
-                    }else if(this->heap[tmp_index] > this->heap[right_index]){
-                        this->swap_data(this->heap, tmp_index, right_index);
-                        tmp_index = right_index;
                     } else{
+                        this->adjust_heap_node(this->heap, right);
                         break;
                     }
-                }else if(left_index < this->heap_length){
-                    if(this->heap[tmp_index] > this->heap[left_index]){
-                        this->swap_data(this->heap, tmp_index, left_index);
-                        tmp_index = left_index;
+                }
+            } else if(index % 2 != 0){
+                int left = index;
+                int father = (left - 1) / 2;
+                while (father >= 0){
+                    if (this->heap[left] < this->heap[father]){
+                        this->swap_data(this->heap, left, father);
+                        left = father;
+                        if(father % 2 == 0){
+                            father = (father - 2) / 2;
+                        }else{
+                            father = (father - 1) / 2;
+                        }
                     } else{
+                        this->adjust_heap_node(this->heap, left);
                         break;
                     }
-                } else{
-                    break;
                 }
             }
-            return tmp_data;
         }
     }
 
@@ -105,7 +115,41 @@ public:
         }catch (char* str){
             cerr<<str<<endl;
         }
+    }
 
+    void adjust_heap_node(T* heap, int tmp_index){
+        while (tmp_index < this->heap_length){
+            int left_index = 2 * tmp_index + 1;
+            int right_index = 2 * tmp_index + 2;
+            if (right_index < this->heap_length){
+                if(this->heap[tmp_index] > this->heap[left_index] and this->heap[tmp_index] > this->heap[right_index]){
+                    if(this->heap[left_index] > this->heap[right_index]){
+                        this->swap_data(this->heap, tmp_index, right_index);
+                        tmp_index = right_index;
+                    }else{
+                        this->swap_data(this->heap, tmp_index, left_index);
+                        tmp_index =left_index;
+                    }
+                }else if(this->heap[tmp_index] > this->heap[left_index]){
+                    this->swap_data(this->heap, tmp_index, left_index);
+                    tmp_index = left_index;
+                }else if(this->heap[tmp_index] > this->heap[right_index]){
+                    this->swap_data(this->heap, tmp_index, right_index);
+                    tmp_index = right_index;
+                } else{
+                    break;
+                }
+            }else if(left_index < this->heap_length){
+                if(this->heap[tmp_index] > this->heap[left_index]){
+                    this->swap_data(this->heap, tmp_index, left_index);
+                    tmp_index = left_index;
+                } else{
+                    break;
+                }
+            } else{
+                break;
+            }
+        }
     }
 };
 

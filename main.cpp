@@ -145,26 +145,10 @@ void test_heap(){
         heap->push(a[i]);
     }
     heap->print_heap();
-    int b = heap->pop();
-    cout<<b<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
-    heap->print_heap();
-    cout<<heap->pop()<<endl;
+//    int b = heap->pop();
+//    cout<<b<<endl;
+//    heap->print_heap();
+    heap->update_heap_value(4, -1);
     heap->print_heap();
 }
 
