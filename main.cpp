@@ -3,6 +3,8 @@
 #include "SortAlgorithm.h"
 #include "RecursiveAndOptimizer.h"
 #include "Utils.h"
+#include "heap.h++"
+
 
 using namespace std;
 
@@ -58,9 +60,10 @@ void test_quick_sort(){
 
 void test_quick_sort_method2(){
     auto* sort = new SortAlgorithm<int>();
-    int* list = utils::get_unsort_range(100, 500);
-    sort->quick_sort_method2(list, 0, 99);
-    for(int i = 0;i<100;i++){
+//    int* list = utils::get_unsort_range(100, 500);
+    int list[] = {3, 4, 5, 1, 2, 4, 5, 2, 23, 21, 0, 34, 12, 11, 0, -1, 12, 23 ,110, 92};
+    sort->quick_sort_method2(list, 0, 19);
+    for(int i = 0;i<20;i++){
         cout<<list[i]<<"\t";
     }
     cout<<endl;
@@ -125,6 +128,28 @@ void test_count_sort(){
     algorithm->world_count_sort(nullptr, 10);
 }
 
+void test_radix_sort(){
+    string arr[] = {"hello", "count", "found", "cross", "entro"};
+    auto* sort = new SortAlgorithm<int>();
+    sort->radix_sort(arr, 5);
+    for (const auto &i : arr) {
+        cout<< i <<"\n";
+    }
+    cout<<endl;
+}
+
+void test_heap(){
+    Heap<int>* heap = new Heap<int>(10);
+    int a[5] = {1,2,4,2,1};
+    for (int i = 0;i<5;i++){
+        heap->push(a[i]);
+    }
+    heap->print_heap();
+    int b = heap->pop();
+    cout<<b<<endl;
+    heap->print_heap();
+}
+
 
 int main() {
 //    test_search_function();
@@ -137,9 +162,12 @@ int main() {
 //    cout<<endl;
 //    test_factorial();
 //    test_optimizer_fib();
-    test_quick_sort_book();
+//    test_quick_sort_book();
 //    test_merge_sort();
 //    test_count_sort();
+//    test_radix_sort();
+//    test_graph_key_route();
+    test_heap();
     return 0;
 
 }

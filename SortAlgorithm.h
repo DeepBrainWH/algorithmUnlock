@@ -90,13 +90,13 @@ public:
      * @param right
      */
     void quick_sort_method2(T* arr, int left, int right){
-        T bin = arr[(left + right)/2];
-        int i = left;
+        T bin = arr[left];
+        int i = left+1;
         int j = right;
         while (i<=j){
-            while (arr[i]<bin && i<j)
+            while (arr[i]<=bin && i<=j)
                 i++;
-            while (arr[j]>bin && i<j)
+            while (arr[j]>=bin && i<=j)
                 j--;
             if(i<=j){
                 swap(arr, i, j);
@@ -104,10 +104,11 @@ public:
                 j--;
             }
         }
+        swap(arr, left, j);
         if(left<j)
-            quick_sort_method2(arr, left, j);
+            quick_sort_method2(arr, left, j-1);
         if(i<right)
-            quick_sort_method2(arr, i, right);
+            quick_sort_method2(arr, j+1, right);
     }
 
     /**
@@ -161,6 +162,36 @@ public:
         }
 
     }
+    /**
+     * Radix sort.
+     */
+     void radix_sort(string* arr, int len){
+         int max_size = get_max_length(arr, len);
+         int* count = new int[27];
+         auto* tmp = new string[len];
+         for(int i=max_size-1;i>=0;i--){//第i次基数排序
+             for(int j = 0;j<26;j++){
+                 count[j] = 0;//清空计数器
+             }
+             for(int j = 0;j<len;j++){
+                 //Statistic each bucket's element number.
+                 int a = arr[j][i] - 97;
+                 count[a]++;
+             }
+             for(int j = 1;j<26;j++){
+                 count[j] = count[j-1] + count[j];
+             }
+             for(int j = len-1;j>=0;j--){
+                 int k = arr[j][i] - 97;
+                 tmp[count[k]-1] = arr[j];
+                 count[k]--;
+             }
+             for(int j = 0;j<len;j++){
+                 arr[j] = tmp[j];
+             }
+         }
+     }
+
 private:
     void swap(T* list, int first, int last){
         T a;
@@ -251,9 +282,19 @@ private:
          arr[r] = arr[flag];
          arr[flag] = tmp;
          return flag;
-
      }
 
+     /**
+      * Getting max length of a string of an array of string_type.
+      */
+    int get_max_length(string* arr, int size){
+         unsigned long long int max = 0;
+        for(int i = 0;i<size;i++){
+            if(arr[i].length()>max)
+                max = arr[i].length();
+        }
+         return static_cast<int>(max);
+    }
 
 };
 
