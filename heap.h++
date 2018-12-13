@@ -50,6 +50,7 @@ public:
     T pop(){
         if(this->heap_length ==0){
             cerr<<"Empty heap exception!"<<endl;
+            throw "Empty heap exception!";
         } else{
             T tmp_data = this->heap[0];
             this->heap[0] = this->heap[this->heap_length - 1];
@@ -89,7 +90,6 @@ public:
             }
             return tmp_data;
         }
-
     }
 
     void print_heap(){
