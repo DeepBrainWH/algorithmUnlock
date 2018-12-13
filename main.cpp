@@ -140,13 +140,31 @@ void test_radix_sort(){
 
 void test_heap(){
     Heap<int>* heap = new Heap<int>(10);
-    int a[5] = {1,2,4,2,1};
-    for (int i = 0;i<5;i++){
+    int a[7] = {5,7,1,2,3,1,0};
+    for (int i = 0;i<7;i++){
         heap->push(a[i]);
     }
     heap->print_heap();
     int b = heap->pop();
     cout<<b<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
+    heap->print_heap();
+    cout<<heap->pop()<<endl;
     heap->print_heap();
 }
 

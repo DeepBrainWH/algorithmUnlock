@@ -1,7 +1,6 @@
 //
 // Created by wangheng on 2018-12-13.
 //
-
 #ifndef ALGORITHMUNLOCK_HEAP_H
 #define ALGORITHMUNLOCK_HEAP_H
 #include <iostream>
@@ -28,7 +27,6 @@ public:
         if(this->heap_length >= this->max_size){
             this->max_size = this->max_size * 2;
             T* tmp_heap = new T[this->max_size];
-
             for (int i = 0;i<this->max_size / 2;i++){
                 tmp_heap[i] = this->heap[i];
             }
