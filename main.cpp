@@ -4,7 +4,7 @@
 #include "RecursiveAndOptimizer.h"
 #include "Utils.h"
 #include "heap.h++"
-
+#include "graph/critical_path.h++"
 
 using namespace std;
 
@@ -152,7 +152,6 @@ void test_heap(){
     heap->print_heap();
 }
 
-
 int main() {
 //    test_search_function();
 //    test_sort();
@@ -169,7 +168,8 @@ int main() {
 //    test_count_sort();
 //    test_radix_sort();
 //    test_graph_key_route();
-    test_heap();
+//    test_heap();
+    CriticalPath* cp = new CriticalPath();
     return 0;
 
 }
