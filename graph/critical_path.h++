@@ -19,6 +19,29 @@ public:
 };
 
 class CriticalPath {
+private:
+    /**
+     * vertex_num:顶点个数
+     * 图参考../critical_route.png
+     */
+    Node* vertex[9];
+    string* top_sort;
+    int row = 9, col = 9;
+    int graph[9][9] = {
+            {0, 6, 4, 5, MAX, MAX, MAX, MAX, MAX},
+            {MAX, 0, MAX, MAX, 1, MAX, MAX, MAX, MAX},
+            {MAX, MAX, 0, MAX, 1, MAX, MAX, MAX, MAX},
+            {MAX, MAX, MAX, 0, MAX, 2, MAX, MAX, MAX},
+            {MAX, MAX, MAX, MAX, 0, MAX, 5, 7, MAX},
+            {MAX, MAX, MAX, MAX, MAX, 0, 4, MAX, MAX},
+            {MAX, MAX, MAX, MAX, MAX, MAX, 0, MAX, 4},
+            {MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0, 2},
+            {MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0},
+    };
+    string name[9] = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
+    int* est;//最早发生时间
+    int* lst;//最晚发生时间
+
 public:
     CriticalPath() {
         this->__init__();
@@ -77,6 +100,9 @@ public:
                 }
             }
         }
+        for(int i = 0;i<this->row;i++){
+            cout<<(char)(i+65)<<":"<<in_degree[i]<<endl;
+        }
         int tmp_int = 0;
         for(int j = 0;j<this->row;j++){
             for(int i = 0;i<this->row;i++){
@@ -100,10 +126,10 @@ public:
         }
         this->top_sort = top_sort;
         this->_print_top_sort(top_sort, 9);
-//        cout<<"Each vertex in degree:\n";
-//        for(int i = 0;i<this->row;i++){
-//            cout<<(char)(i+65)<<":"<<in_degree[i]<<endl;
-//        }
+        cout<<"Each vertex in degree:\n";
+        for(int i = 0;i<this->row;i++){
+            cout<<(char)(i+65)<<":"<<in_degree[i]<<endl;
+        }
     }
     /**
      * 获取最早发生时间
@@ -188,28 +214,5 @@ public:
         }
         cout<<endl;
     }
-
-private:
-    /**
-     * vertex_num:顶点个数
-     * 图参考../critical_route.png
-     */
-    Node* vertex[9];
-    string* top_sort;
-    int row = 9, col = 9;
-    int graph[9][9] = {
-            {0, 6, 4, 5, MAX, MAX, MAX, MAX, MAX},
-            {MAX, 0, MAX, MAX, 1, MAX, MAX, MAX, MAX},
-            {MAX, MAX, 0, MAX, 1, MAX, MAX, MAX, MAX},
-            {MAX, MAX, MAX, 0, MAX, 2, MAX, MAX, MAX},
-            {MAX, MAX, MAX, MAX, 0, MAX, 5, 7, MAX},
-            {MAX, MAX, MAX, MAX, MAX, 0, 4, MAX, MAX},
-            {MAX, MAX, MAX, MAX, MAX, MAX, 0, MAX, 4},
-            {MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0, 2},
-            {MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0},
-    };
-    string name[9] = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
-    int* est;//最早发生时间
-    int* lst;//最晚发生时间
 };
 #endif //ALGORITHMUNLOCK_CRITICAL_PATH_H

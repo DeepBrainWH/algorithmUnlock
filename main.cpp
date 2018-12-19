@@ -5,6 +5,7 @@
 #include "Utils.h"
 #include "heap.h++"
 #include "graph/critical_path.h++"
+#include "tree/binary_search_tree.h++"
 
 using namespace std;
 
@@ -169,7 +170,11 @@ int main() {
 //    test_radix_sort();
 //    test_graph_key_route();
 //    test_heap();
-    CriticalPath* cp = new CriticalPath();
+//    CriticalPath* cp = new CriticalPath();
+
+    auto * tree = new BBTree<int>();
+    tree->_build_tree();
+    tree->mid_order(tree->get_root_node());
     return 0;
 
 }
