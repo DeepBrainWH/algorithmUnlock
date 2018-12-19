@@ -4,7 +4,6 @@
 
 #ifndef ALGORITHMUNLOCK_CRITICAL_PATH_H
 #define ALGORITHMUNLOCK_CRITICAL_PATH_H
-
 #include <iostream>
 #include <string>
 #define MAX 99999
