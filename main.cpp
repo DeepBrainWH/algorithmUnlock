@@ -6,6 +6,7 @@
 #include "heap.h++"
 #include "graph/critical_path.h++"
 #include "tree/binary_search_tree.h++"
+#include "interview/tencent.h++"
 
 using namespace std;
 
@@ -153,6 +154,11 @@ void test_heap(){
     heap->print_heap();
 }
 
+void tencent_interview(){
+    Tencent *tencent = new Tencent;
+    tencent->print_matrix();
+}
+
 int main() {
 //    test_search_function();
 //    test_sort();
@@ -172,9 +178,11 @@ int main() {
 //    test_heap();
 //    CriticalPath* cp = new CriticalPath();
 
-    auto * tree = new BBTree<int>();
-    tree->_build_tree();
-    tree->mid_order(tree->get_root_node());
+//    auto * tree = new BBTree<int>();
+//    tree->_build_tree();
+//    tree->mid_order(tree->get_root_node());
+
+    tencent_interview();
     return 0;
 
 }
