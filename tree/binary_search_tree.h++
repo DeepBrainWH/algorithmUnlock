@@ -89,12 +89,8 @@ public:
         this->mid_order(node->right);
     }
 
-
-
     TreeNode<T>* get_root_node(){
         return this->root;
     }
 };
-
-
 #endif //ALGORITHMUNLOCK_BINARY_SEARCH_TREE_H
