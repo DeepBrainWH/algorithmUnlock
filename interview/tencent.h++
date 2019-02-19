@@ -141,8 +141,8 @@ public:
                     T[i++] = A[q++];
                 }
             }
-            for(int i = l;i<r;i++){
-                A[i] = T[i];
+            for(int j = l;j<r;j++){
+                A[j] = T[j];
             }
         }
     }
