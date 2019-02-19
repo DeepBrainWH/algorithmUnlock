@@ -6,11 +6,11 @@
 #define ALGORITHMUNLOCK_TEST_1_H
 
 #include <iostream>
-#include "../SearchAlgorithm.h"
-#include "../SortAlgorithm.h"
-#include "../RecursiveAndOptimizer.h"
+#include "../algebra/SearchAlgorithm.h"
+#include "../algebra/SortAlgorithm.h"
+#include "../algebra/RecursiveAndOptimizer.h"
 #include "../Utils.h"
-#include "../heap.h++"
+#include "../algebra/heap.h++"
 #include "../graph/critical_path.h++"
 #include "../tree/binary_search_tree.h++"
 #include "../interview/tencent.h++"
