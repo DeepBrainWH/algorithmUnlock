@@ -1,4 +1,5 @@
 #include "test_function/test_1.h++"
+#include "test_function/test_2.h++"
 
 int main() {
 //test_1.h++ file function.====================================
@@ -25,8 +26,11 @@ int main() {
 //    tencent_interview();
 
 //test_2.h++ file function.====================================
-
-
+//    stl::where_is_the_marble();
+//    t2::test_max_continues_sum();
+//    t2::test_max_continues_sum_2();
+//    t2::test_max_continues_sum_3();
+    t2::test_merge_sort();
 
 
     return 0;
