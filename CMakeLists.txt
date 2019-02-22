@@ -8,4 +8,4 @@ add_executable(algorithmUnlock main.cpp algebra/SearchAlgorithm.h
         algebra/heap.h++ graph/critical_path.h++ tree/binary_search_tree.h++
         algebra/tensor.h++ interview/tencent.h++ interview/microsoft.h++
         stl/stl_primary.h++ test_function/test_1.h++
-        test_function/test_2.h++)
+        test_function/test_2.h++ structure/myCircleQueue.hpp)
