@@ -31,13 +31,7 @@ int main() {
 //    t2::test_max_continues_sum_2();
 //    t2::test_max_continues_sum_3();
 //    t2::test_merge_sort();
-//    t2::test_pascal_triangle();
-//    t2::test_arrange();
-//    t2::test_all_number_arrange();
-    t2::test_example_one();
-
-
-
+    t2::test_float_number();
 
     return 0;
 

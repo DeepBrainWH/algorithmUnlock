@@ -6,7 +6,6 @@
 #define ALGORITHMUNLOCK_TENCENT_H
 
 #include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -155,118 +154,43 @@ public:
         }
     }
 
-    void pascal_triangle() {
-        int pas[5][5] = {
-                {1, 0, 0, 0, 0},
-                {1, 1, 0, 0, 0},
-                {1, 2, 1, 0, 0},
-                {1, 3, 3, 1, 0},
-                {1, 4, 6, 4, 1}
-        };
-        cout << "row: " << 4 << " col: " << 3 << " is: " << this->pascal_angle_fun(4 - 1, 3 - 1) << endl;
-    }
-
-    int arrange(int m, int n) {
-        //m个A, n个B组成多少个排列
-        if (m == 0 or n == 0) return 1;
-        return arrange(m - 1, n) + arrange(m, n - 1);
-    }
-
-    void all_arrange_of_one_number(int n, int *a, int start_position) {
-        /**
-         * n: 要分解的数
-         * a: 数组，划分分解的数据。start_position开始分解数据的位置。
-         */
-        /* 6
-         * 5+1
-         * 4+2,4+1+1
-         * 3+3,3+2+1,3+1+1
-         * 2+2+2,2+2+1+1,2+1+1+1+1
-         * 1+1+1+1+1+1
-         * 打印一个数的所有划分
-         */
-        if (n <= 0) {
-            for (int i = 0; i < start_position; i++) {
-                cout << a[i];
-                if (i + 1 < start_position) cout << "+";
-            }
-            cout << endl;
-            return;
-        }
-        for (int i = n; i > 0; i--) {
-            a[start_position] = i;
-            if (start_position > 0 and a[start_position - 1] < i)continue;
-            all_arrange_of_one_number(n - i, a, start_position + 1);
-        }
-    }
-
-    /*某财务部门结账时发现总金额不对头，很可能是漏了一笔或几笔，如果已知明细账目清单，能通过
-     * 编程找到漏掉的是哪一笔或者几笔吗？
-     * 如果有多种可能，则输出所有可能的情况。
-     * 我们规定：用户输入的第一行是有错的总金额
-     * 接下来是n行整数，分别表示每笔账目金额。
-     * 要求程序输出，所有可能漏掉的金额组合。每个情况1行金额按照从小到大排列，中间使用空客分开。
-     * 比如：
-     * 用户输入：
-     * 6
-     * 5
-     * 3
-     * 2
-     * 4
-     * 3
-     * 1
-     * 表明：有错的总金额是6：明细共有5笔。
-     * 此时程序应输出：
-     * 1 3 3
-     * 1 2 4
-     * 3 4*/
-    /*暴力枚举算法。*/
-    void example_one(){
-        int err_sum = 6;
-        int a[5] = {3,2,4,3,1};
-        int k = 0;
-        int curr_sum = 0;
-        bool b[5] = {false, false, false, false,false};
-        int length = 5;
-        this->example_one_func(err_sum, a, k, curr_sum, b, 5);
-    }
     int max(int a, int b) {
         if (a > b)return a;
         else return b;
     }
 
-private:
-    int pascal_angle_fun(int m, int n) {
-        if (n == 0) return 1;
-        if (m == n or m == 0) return 1;
-        return (this->pascal_angle_fun(m - 1, n - 1) + this->pascal_angle_fun(m - 1, n));
-    }
-
-    void example_one_func(int err_sum, int a[], int k, int curr_sum, bool b[], int length){
-        /*err_sum:有错的和
-         * a:明细
-         * k:当前处理的位置
-         * curr_sum: 前面元素和
-         * b:记录元素取舍
-         * length: a长度
-         * */
-        if(curr_sum > err_sum) return;
-        if(curr_sum == err_sum){
-            for(int i =0;i<length;i++){
-                if(b[i] == false) cout<<a[i]<<" ";
+    /*浮点数问题*/
+    void float_number() {
+        /*在计算机中,0.2+0.1 == 0.30000000000004,是一个非常接近0.3的数值,但是不是0.3
+         * 浮点数: 足够接近: |a-b| < seta*
+         * 对于这种情况, 我们在做这种题目的时候先把浮点扩大10^n倍,然后再进行计算.*/
+        /*案例:
+         * 有一群海盗(不多于20人)比拼酒量,过程如下:
+         * 打开一瓶酒,在场人平分喝下,有几个人倒下了.
+         * 再开一瓶酒,又有倒下的.再次重复...直到开了第四瓶,坐着的人已经所剩无几.
+         * 海盗船长也在其中.当第四瓶酒喝完时,大家都倒下了.
+         * 船长在日志中写到, 昨天我正好喝了一瓶酒...
+         *
+         * 解法: 有四瓶酒,分别定义为:a, b, c, d, 则 1/a + 1/b + 1/c + 1/d = 1*/
+        for (int a = 20; a > 0; a--) {
+            for (int b = a - 1; b > 0; b--) {
+                for (int c = b - 1; c > 0; c--) {
+                    for (int d = c - 1; d > 0; d--) {
+                        if(b*c*d + a*c*d + a*b*d + a*b*c == a*b*c*d){//不要将浮点数直接对比．
+                            cout<<a<<" "<<b<<" "<<c<<" "<<d<<endl;
+                        }
+                    }
+                }
             }
-            cout<<endl;
-            return;
         }
-        if(k>=length) return;
-
-        b[k] = false;
-        example_one_func(err_sum, a, k+1, curr_sum, b, length);
-        b[k] = true;
-        curr_sum += a[k];
-        example_one_func(err_sum, a, k+1, curr_sum, b, length);
-        b[k] = false;
+//        cout << 0.2 + 0.1 << endl;
+//        cout << ((0.2 + 0.1) - 0.3) << endl;
     }
+
+    void float_number_2(){
+        
+    }
+
 
 };
 

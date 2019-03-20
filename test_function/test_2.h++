@@ -68,6 +68,11 @@ namespace t2 {
         auto* tenc = new Tencent();
         tenc->example_one();
     }
+
+    void test_float_number(){
+        auto* tenc = new Tencent();
+        tenc->float_number();
+    }
 }
 
 #endif //ALGORITHMUNLOCK_TEST_2_H
