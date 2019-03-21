@@ -32,6 +32,4 @@ class Tire:
 if __name__ == '__main__':
     trie = Tire()
     trie.create_trie()
-    trie.print_trie(trie.root)
-
 
