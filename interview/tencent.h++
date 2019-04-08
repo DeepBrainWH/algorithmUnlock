@@ -26,7 +26,7 @@ public:
          */
         int rows = 5;
         int cols = 5;
-        int mat[rows][cols] = {
+        int mat[5][5] = {
                 {3, 4, 5, 6, 5},
                 {4, 5, 9, 8, 3},
                 {8, 9, 0, 3, 2},
@@ -71,7 +71,7 @@ public:
     void max_continues_sum() {
         int tot = 0;//计算次数
         int n = 10;
-        int a[n] = {1, -2, 3, 2, 2, -3, -5, 9, 2, -2};
+        int a[10] = {1, -2, 3, 2, 2, -3, -5, 9, 2, -2};
         int best = a[0];
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
@@ -92,7 +92,7 @@ public:
         //S_i = A_1+A_2+A_3+...+A_i则:A_i + A_(i+1) + A_(i+2) + A_j = S_j - S_i
         //利用以上算法公式推导求最大连续和.时间复杂度为O(n^2)
         int n = 10;
-        int a[n] = {1, -2, 3, 2, 2, -3, -5, 9, 2, -2};
+        int a[10] = {1, -2, 3, 2, 2, -3, -5, 9, 2, -2};
         int best = a[0];
         int S[n];
         S[0] = a[0];

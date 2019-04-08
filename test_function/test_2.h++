@@ -47,27 +47,27 @@ namespace t2 {
         cout << endl;
     }
 
-    void test_pascal_triangle() {
-        auto *tenc = new Tencent();
-        tenc->pascal_triangle();
-    }
+//    void test_pascal_triangle() {
+//        auto *tenc = new Tencent();
+//        tenc->pascal_triangle();
+//    }
 
-    void test_arrange() {
-        auto *tenc = new Tencent();
-        int times = tenc->arrange(4, 1);
-        cout<<"4 numbers of A and 1 number of B, which can be arranged :"<<times<<endl;
-    }
+//    void test_arrange() {
+//        auto *tenc = new Tencent();
+//        int times = tenc->arrange(4, 1);
+//        cout<<"4 numbers of A and 1 number of B, which can be arranged :"<<times<<endl;
+//    }
 
-    void test_all_number_arrange(){
-        auto* tenc = new Tencent();
-        int a[1000];
-        tenc->all_arrange_of_one_number(20, a, 0);
-    }
+//    void test_all_number_arrange(){
+//        auto* tenc = new Tencent();
+//        int a[1000];
+//        tenc->all_arrange_of_one_number(20, a, 0);
+//    }
 
-    void test_example_one(){
-        auto* tenc = new Tencent();
-        tenc->example_one();
-    }
+//    void test_example_one(){
+//        auto* tenc = new Tencent();
+//        tenc->example_one();
+//    }
 
     void test_float_number(){
         auto* tenc = new Tencent();

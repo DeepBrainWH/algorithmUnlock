@@ -87,7 +87,7 @@ void test_fib(){
 void test_optimizer_fib(){
     int n = 45;
     auto* recursive = new RecursiveAndOptimizer();
-    auto* result = new long[n]{0};
+    auto* result = new long[45]{0};
 
     long value = recursive->fib(n, result);
     cout<<value<<endl;
