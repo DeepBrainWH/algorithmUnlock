@@ -1,6 +1,5 @@
 #include "test_function/test_1.h++"
 #include "test_function/test_2.h++"
-#include "test_function/test_3.h++"
 
 int main() {
 //test_1.h++ file function.====================================
@@ -32,11 +31,10 @@ int main() {
 //    t2::test_max_continues_sum_2();
 //    t2::test_max_continues_sum_3();
 //    t2::test_merge_sort();
-//    t2::test_float_number();
+    t2::test_float_number();
 
 
 //test3.h++ file function.========================================
-    test_dumplication_numbers();
     return 0;
 
 }
