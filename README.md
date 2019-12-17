@@ -1,4 +1,2 @@
-# **algorithmUnlock**
-Algorithm Foundation
-
-算法入门与实践
+# 算法导论(包括leetcode里面的算法)
+1. [leetcode 算法](linux_advc/)
