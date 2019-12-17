@@ -10,8 +10,7 @@
 
 using namespace std;
 
-
-class Node{
+class Node {
 public:
     string name;
     int value;
@@ -28,33 +27,36 @@ private:
     string* top_sort;
     int row = 9, col = 9;
     int graph[9][9] = {
-            {0, 6, 4, 5, MAX, MAX, MAX, MAX, MAX},
-            {MAX, 0, MAX, MAX, 1, MAX, MAX, MAX, MAX},
-            {MAX, MAX, 0, MAX, 1, MAX, MAX, MAX, MAX},
-            {MAX, MAX, MAX, 0, MAX, 2, MAX, MAX, MAX},
-            {MAX, MAX, MAX, MAX, 0, MAX, 5, 7, MAX},
-            {MAX, MAX, MAX, MAX, MAX, 0, 4, MAX, MAX},
-            {MAX, MAX, MAX, MAX, MAX, MAX, 0, MAX, 4},
-            {MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0, 2},
-            {MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0},
+        { 0, 6, 4, 5, MAX, MAX, MAX, MAX, MAX },
+        { MAX, 0, MAX, MAX, 1, MAX, MAX, MAX, MAX },
+        { MAX, MAX, 0, MAX, 1, MAX, MAX, MAX, MAX },
+        { MAX, MAX, MAX, 0, MAX, 2, MAX, MAX, MAX },
+        { MAX, MAX, MAX, MAX, 0, MAX, 5, 7, MAX },
+        { MAX, MAX, MAX, MAX, MAX, 0, 4, MAX, MAX },
+        { MAX, MAX, MAX, MAX, MAX, MAX, 0, MAX, 4 },
+        { MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0, 2 },
+        { MAX, MAX, MAX, MAX, MAX, MAX, MAX, MAX, 0 },
     };
-    string name[9] = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
-    int* est;//最早发生时间
-    int* lst;//最晚发生时间
+    string name[9] = { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
+    int* est; //最早发生时间
+    int* lst; //最晚发生时间
 
 public:
-    CriticalPath() {
+    CriticalPath()
+    {
         this->__init__();
     }
-    ~CriticalPath(){
-        delete(&vertex);
-        delete []top_sort;
-        delete(&graph);
-        delete []est;
-        delete []lst;
+    ~CriticalPath()
+    {
+        delete (&vertex);
+        delete[] top_sort;
+        delete (&graph);
+        delete[] est;
+        delete[] lst;
     }
 
-    void __init__() {
+    void __init__()
+    {
         Node* tmp_p;
         //初始化图的邻接表
         for (int i = 0; i < 9; i++) {
@@ -65,8 +67,8 @@ public:
             node->next = nullptr;
             this->vertex[i] = node;
             tmp_p = vertex[i];
-            for(int j = 0;j<9;j++){
-                if(this->graph[i][j] != 0 and this->graph[i][j] != MAX){
+            for (int j = 0; j < 9; j++) {
+                if (this->graph[i][j] != 0 and this->graph[i][j] != MAX) {
                     Node* node1 = new Node;
                     node1->name = this->name[j];
                     node1->value = this->graph[i][j];
@@ -87,60 +89,62 @@ public:
     /**
      * topological sort.
      */
-    void _top_sort(){
-        int in_degree[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    void _top_sort()
+    {
+        int in_degree[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         string* top_sort = new string[this->row];
         Node* tmp;
-        for(int i = 0;i<this->row;i++){
-            if(this->vertex[i] != nullptr){
+        for (int i = 0; i < this->row; i++) {
+            if (this->vertex[i] != nullptr) {
                 tmp = this->vertex[i]->next;
-                while (tmp != nullptr){
-                    in_degree[tmp->name[0] - 65] ++;
+                while (tmp != nullptr) {
+                    in_degree[tmp->name[0] - 65]++;
                     tmp = tmp->next;
                 }
             }
         }
-        for(int i = 0;i<this->row;i++){
-            cout<<(char)(i+65)<<":"<<in_degree[i]<<endl;
+        for (int i = 0; i < this->row; i++) {
+            cout << (char)(i + 65) << ":" << in_degree[i] << endl;
         }
         int tmp_int = 0;
-        for(int j = 0;j<this->row;j++){
-            for(int i = 0;i<this->row;i++){
-                if(in_degree[i] == 0){
+        for (int j = 0; j < this->row; j++) {
+            for (int i = 0; i < this->row; i++) {
+                if (in_degree[i] == 0) {
                     top_sort[tmp_int] = (char)(i + 65);
                     in_degree[i] = -1;
-                    tmp_int ++;
+                    tmp_int++;
                     tmp = this->vertex[i];
-                    while (tmp != nullptr and tmp->next != nullptr){
-                        in_degree[tmp->next->name[0] - 65] --;
+                    while (tmp != nullptr and tmp->next != nullptr) {
+                        in_degree[tmp->next->name[0] - 65]--;
                         tmp = tmp->next;
                     }
                 }
             }
         }
-        for(int i = 0;i<this->row;i++){
-            if(in_degree[i] != -1){
-                cout<<"The graph has a loop and critical path calculations cannot be performed"<<endl;
+        for (int i = 0; i < this->row; i++) {
+            if (in_degree[i] != -1) {
+                cout << "The graph has a loop and critical path calculations cannot be performed" << endl;
                 throw "The graph has a loop and critical path calculations cannot be performed";
             }
         }
         this->top_sort = top_sort;
         this->_print_top_sort(top_sort, 9);
-        cout<<"Each vertex in degree:\n";
-        for(int i = 0;i<this->row;i++){
-            cout<<(char)(i+65)<<":"<<in_degree[i]<<endl;
+        cout << "Each vertex in degree:\n";
+        for (int i = 0; i < this->row; i++) {
+            cout << (char)(i + 65) << ":" << in_degree[i] << endl;
         }
     }
     /**
      * 获取最早发生时间
      */
-    int* _get_est(){
+    int* _get_est()
+    {
         int* ee = new int[9]();
-        for(int i = 0;i<this->row;i++){
+        for (int i = 0; i < this->row; i++) {
             Node* tmp = this->vertex[this->top_sort[i][0] - 65];
             Node* tmp_next = tmp->next;
-            while (tmp_next != nullptr){
-                if(ee[tmp->name[0] - 65] + tmp_next->value > ee[tmp_next->name[0] - 65]){
+            while (tmp_next != nullptr) {
+                if (ee[tmp->name[0] - 65] + tmp_next->value > ee[tmp_next->name[0] - 65]) {
                     ee[tmp_next->name[0] - 65] = ee[tmp->name[0] - 65] + tmp_next->value;
                 }
                 tmp_next = tmp_next->next;
@@ -152,17 +156,18 @@ public:
     /**
      * 获取最晚发生时间
      */
-    int* _get_lst(){
+    int* _get_lst()
+    {
         int* tmp_lst = this->est;
-        for(int i = this->row-1; i>-1; i--){
+        for (int i = this->row - 1; i > -1; i--) {
             string tmp = this->top_sort[i];
-            for(int j = this->row-1;j>-1;j--){
+            for (int j = this->row - 1; j > -1; j--) {
                 Node* tmp_node = this->vertex[j];
                 Node* tmp_node_next = tmp_node->next;
-                while (tmp_node_next != nullptr){
-                    if(tmp_node_next->name == tmp){
-                        if(tmp_lst[tmp[0] - 65] - tmp_node_next->value < tmp_lst[tmp_node_next->name[0]-65]){
-                            tmp_lst[tmp_node->name[0]-65] = tmp_lst[tmp[0] - 65] - tmp_node_next->value;
+                while (tmp_node_next != nullptr) {
+                    if (tmp_node_next->name == tmp) {
+                        if (tmp_lst[tmp[0] - 65] - tmp_node_next->value < tmp_lst[tmp_node_next->name[0] - 65]) {
+                            tmp_lst[tmp_node->name[0] - 65] = tmp_lst[tmp[0] - 65] - tmp_node_next->value;
                         }
                         break;
                     }
@@ -172,47 +177,51 @@ public:
         }
         return tmp_lst;
     }
-    void _print_graph(){
-        for(int i = 0;i<this->row;i++){
-            if(this->vertex[i] != nullptr){
+    void _print_graph()
+    {
+        for (int i = 0; i < this->row; i++) {
+            if (this->vertex[i] != nullptr) {
                 Node* tmp = this->vertex[i];
-                cout<<tmp->name<<":\t";
-                while (tmp->next != nullptr){
-                    cout<<"("<<tmp->next->name<<":"<<tmp->next->value<<") ";
+                cout << tmp->name << ":\t";
+                while (tmp->next != nullptr) {
+                    cout << "(" << tmp->next->name << ":" << tmp->next->value << ") ";
                     tmp = tmp->next;
                 }
-                cout<<endl;
+                cout << endl;
             }
         }
     }
 
-    void _print_top_sort(string* top, int len){
-        for(int i = 0;i<len;i++){
-            cout<<top[i]<<" ";
+    void _print_top_sort(string* top, int len)
+    {
+        for (int i = 0; i < len; i++) {
+            cout << top[i] << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
 
-    void _print_est(){
-        for(int i = 0;i<this->row;i++){
-            cout<<this->top_sort[i]<<"\t";
+    void _print_est()
+    {
+        for (int i = 0; i < this->row; i++) {
+            cout << this->top_sort[i] << "\t";
         }
-        cout<<endl;
-        for(int i = 0;i<this->row;i++){
-            cout<<this->est[i]<<"\t";
+        cout << endl;
+        for (int i = 0; i < this->row; i++) {
+            cout << this->est[i] << "\t";
         }
-        cout<<endl;
+        cout << endl;
     }
 
-    void _print_lst(){
-        for(int i = 0;i<this->row;i++){
-            cout<<this->top_sort[i]<<"\t";
+    void _print_lst()
+    {
+        for (int i = 0; i < this->row; i++) {
+            cout << this->top_sort[i] << "\t";
         }
-        cout<<endl;
-        for(int i = 0;i<this->row;i++){
-            cout<<this->lst[i]<<"\t";
+        cout << endl;
+        for (int i = 0; i < this->row; i++) {
+            cout << this->lst[i] << "\t";
         }
-        cout<<endl;
+        cout << endl;
     }
 };
 #endif //ALGORITHMUNLOCK_CRITICAL_PATH_H

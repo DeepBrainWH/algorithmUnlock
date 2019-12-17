@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 project(algorithmUnlock)
 
-set(CMAKE_CXX_STANDARD 17)
-include_directories("./lib/include")
+set(CMAKE_CXX_STANDARD 11)
+include_directories("lib/include")
 
 add_executable(algorithmUnlock main.cpp algebra/SearchAlgorithm.h
         algebra/RecursiveAndOptimizer.h algebra/SortAlgorithm.h Utils.h
