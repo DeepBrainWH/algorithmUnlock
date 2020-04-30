@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.15)
 project(algorithmUnlock)
 
+enable_language(C CXX)
 set(CMAKE_CXX_STANDARD 11)
 include_directories("lib/include")
 
@@ -10,3 +11,5 @@ add_executable(algorithmUnlock main.cpp algebra/SearchAlgorithm.h
         algebra/tensor.h++ interview/tencent.h++ interview/microsoft.h++
         stl/stl_primary.h++ test_function/test_1.h++
         test_function/test_2.h++ structure/myCircleQueue.hpp)
+
+add_subdirectory(machineLearning)
